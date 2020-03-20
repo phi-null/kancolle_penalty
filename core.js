@@ -5,7 +5,7 @@ var battle = [//数字の入力は%で
   {use_oil :   4, use_bullet :   8, types:"対PT戦"},
   {use_oil :  10, use_bullet :  10, types:"開幕夜戦・対水上艦隊"},
   {use_oil :  20, use_bullet :  30, types:"払暁戦・昼移行"},
-  {use_oil :   8, use_bullet :   4, types:"空襲戦"},
+  {use_oil :   6, use_bullet :   4, types:"空襲戦"},
   {use_oil :  20, use_bullet :  20, types:"航空戦"},
 ]
 
@@ -35,6 +35,14 @@ function reculc(){
   battle_count_view.innerHTML = battle_count + "回"
   oil.innerHTML = last_oil+"%"
   bullet.innerHTML = last_bullet+"%"
+}
+
+function reset(){
+  var counts = document.getElementsByName("count")
+  counts.forEach(function(item){
+    item.value = 0
+  })
+  reculc()
 }
 
 window.onload = function() {
