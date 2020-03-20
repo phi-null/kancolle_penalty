@@ -57,6 +57,14 @@ function reculc(){
   }
 }
 
+function change_normal(){
+  document.getElementById("event_check").checked = false
+}
+
+function change_event(){
+  document.getElementById("event_check").checked = true
+}
+
 function reset(){
   var counts = document.getElementsByName("count")
   counts.forEach(function(item){

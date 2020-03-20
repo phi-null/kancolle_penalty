@@ -23,19 +23,23 @@
     body div{
       padding-top:10px;
     }
+
+    .unselectable{
+      user-select: none;
+    }
   </style>
 	<script src='./core.js'></script>
 </head>
 <body>
   <button onclick="reset()">Reset</button>
   <div class="switch">
-    <span>通常海域</span>
+    <span onclick="change_normal()" class="unselectable">通常海域</span>
     <label class="switch__label">
       <input id="event_check" type="checkbox" class="switch__input" checked="checked" onchange="reculc()"/>
       <span class="switch__content"></span>
       <span class="switch__circle"></span>
     </label>
-    <span>イベント海域</span>
+    <span onclick="change_event()" class="unselectable">イベント海域</span>
   </div>
   <section id="input">
   </section>
