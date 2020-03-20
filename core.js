@@ -5,7 +5,7 @@ var battle = [//数字の入力は%で
   {use_oil :   4, use_bullet :   8, types:"対PT戦"},
   {use_oil :  10, use_bullet :  10, types:"開幕夜戦・対水上艦隊"},
   {use_oil :  20, use_bullet :  30, types:"払暁戦・昼移行"},
-  {use_oil :   6, use_bullet :   4, types:"空襲戦"},
+  {use_oil :   8, use_bullet :   4, event:{use_oil :   6, use_bullet :   4}, types:"空襲戦"},
   {use_oil :  20, use_bullet :  20, types:"航空戦"},
 ]
 
@@ -17,10 +17,24 @@ function reculc(){
   console.log(counts)
   var counter = 0
   counts.forEach(function(item){
-    last_oil -= item.value * battle[counter].use_oil
-    last_bullet -= item.value * battle[counter].use_bullet
-    battle_count += Number(item.value)
-    counter++
+    if(document.getElementById("event_check").checked){//イベント海域が指定されており
+      if(battle[counter].event){//イベント海域用の設定が存在するなら反映
+        last_oil -= item.value * battle[counter].event.use_oil
+        last_bullet -= item.value * battle[counter].event.use_bullet
+        battle_count += Number(item.value)
+        counter++
+      } else {//しないなら良い
+        last_oil -= item.value * battle[counter].use_oil
+        last_bullet -= item.value * battle[counter].use_bullet
+        battle_count += Number(item.value)
+        counter++
+      }
+    } else {//しないなら良い
+      last_oil -= item.value * battle[counter].use_oil
+      last_bullet -= item.value * battle[counter].use_bullet
+      battle_count += Number(item.value)
+      counter++
+    }
   })
 
   var battle_count_view = document.getElementById("battle_count_view")
@@ -35,6 +49,12 @@ function reculc(){
   battle_count_view.innerHTML = battle_count + "回"
   oil.innerHTML = last_oil+"%"
   bullet.innerHTML = last_bullet+"%"
+
+  if(last_bullet < 50){
+    bullet.style.color = "#ff2222"
+  } else {
+    bullet.style.color = "#000000"
+  }
 }
 
 function reset(){

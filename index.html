@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="./style_button.css">
   <style>
     body section div span{
       width: 165px;
@@ -27,6 +28,15 @@
 </head>
 <body>
   <button onclick="reset()">Reset</button>
+  <div class="switch">
+    <span>通常海域</span>
+    <label class="switch__label">
+      <input id="event_check" type="checkbox" class="switch__input" checked="checked" onchange="reculc()"/>
+      <span class="switch__content"></span>
+      <span class="switch__circle"></span>
+    </label>
+    <span>イベント海域</span>
+  </div>
   <section id="input">
   </section>
   <div>
